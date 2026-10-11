@@ -1,0 +1,11 @@
+# Binaries and object files
+bin/
+*.o
+*.out
+
+# macOS files
+.DS_Store
+
+# IDE configs
+.vscode/
+.idea/
