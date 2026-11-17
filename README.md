@@ -1,116 +1,52 @@
-# ✨ PIXORA — Premium Pinterest-Inspired Social Media Platform
+# Member 08: Toast Notifications & User Feedback System
 
-> **Inspire. Collect. Create.**  
-> A full-stack visual discovery and social pinning platform featuring a modern **Pinterest-style frontend** and a high-performance **C++17 HTTP REST API Server & Console Engine**, architected collaboratively across **10 group members** for First Year B.Tech Engineering.
-
----
-
-## 🌟 Key Features
-
-- **Pinterest-Style Responsive Masonry Feed**: Dynamic CSS multi-column staggered image layout (5 columns on desktop down to 2 columns on mobile devices) with lazy loading and broken-image fallbacks.
-- **Card Hover Overlays**: Quick Red "Save" / dark "Saved" toggle, source website badge, one-click image download with Blob processing, and link copy sharing.
-- **Pin Detail Modal**: High-res split-screen modal view featuring board saving selector, interactive discussion thread with emojis, author verification badge, follower count, and "More to Explore" recommendations.
-- **Pin Creation Studio**: Drag-and-drop file upload using HTML5 FileReader (Base64 encoding), direct image URL preview, inline board creator, category dropdown, and tag parsing.
-- **User Profile & Boards**: Custom landscape cover banner, avatar, bio, live counters (Followers, Following, Saves), Edit Profile modal, and board collections with board-specific pin filtering.
-- **Omnibox Search & Category Filters**: Multi-field real-time search with input debounce, paired with horizontally scrollable category filter pills.
-- **State Persistence**: Dual persistence layer: browser `localStorage` + persistent disk JSON files (`backend/data/pins.json`, `boards.json`, `profile.json`).
-- **Dark & Light Mode**: Complete theme engine with CSS Custom Properties and preference persistence.
-- **Dual C++ Run Modes**:
-  1. **Web Server Mode**: High-performance C++ HTTP socket server serving frontend and REST API on `http://localhost:8080`.
-  2. **Interactive Terminal CLI Mode**: Menu-driven console interface for testing all features in the terminal (ideal for college viva).
-- **10-Member Group Distribution**: Complete codebase divided into 10 distinct member modules with dedicated documentation, source files, and Viva questions.
+## 👤 Member Information
+- **Name / Assignee:** Member 08
+- **Module Name:** Real-time Toast Notifications & Interactive Feedback Service
+- **Primary Source Files:** `frontend/js/notifications.js`, `frontend/members/Member_08_Notifications_And_Feedback/notifications.css`
 
 ---
 
-## 👥 10-Member Team Distribution & Presentation Roster
-
-Each member owns dedicated source modules in both `backend/members/` (C++) and `frontend/members/` (Frontend):
-
-| Member # | Subsystem / Role | Key C++ Files | Frontend Module | Member Folder |
-| :---: | :--- | :--- | :--- | :--- |
-| **01** | **HTTP Server & App Shell** | `HttpServer.hpp`, `HttpServer.cpp` | `js/navigation.js`, `css/navigation.css` | [`backend/members/Member_01_Server_Controller/`](backend/members/Member_01_Server_Controller/) |
-| **02** | **Pin Model & Masonry Feed** | `Pin.hpp`, `Pin.cpp`, `FeedManager.hpp` | `js/masonry.js`, `css/masonry.css` | [`backend/members/Member_02_Pin_Feed_Manager/`](backend/members/Member_02_Pin_Feed_Manager/) |
-| **03** | **Pin Detail Modal & Social Feedback** | `InteractionManager.hpp`, `InteractionManager.cpp` | `js/modal.js`, `css/modal.css` | [`backend/members/Member_03_Interaction_Engine/`](backend/members/Member_03_Interaction_Engine/) |
-| **04** | **Sarthak Anbhule** | `PinCreator.hpp`, `PinCreator.cpp` | `js/create.js`, `css/create.css` | [`backend/members/Member_04_Pin_Ingestion_Studio/`](backend/members/Member_04_Pin_Ingestion_Studio/) |
-| **05** | **User Profile & Board Collections** | `Profile.hpp`, `Profile.cpp`, `Board.hpp` | `js/profile.js`, `css/profile.css` | [`backend/members/Member_05_Profile_And_Boards/`](backend/members/Member_05_Profile_And_Boards/) |
-| **06** | **Search Engine & Category Filters** | `SearchEngine.hpp`, `SearchEngine.cpp` | `js/search.js`, `css/components.css` | [`backend/members/Member_06_Search_Filter_Algorithm/`](backend/members/Member_06_Search_Filter_Algorithm/) |
-| **07** | **File Persistence & Storage Service** | `DatabaseManager.hpp`, `DatabaseManager.cpp` | `js/storage.js` | [`backend/members/Member_07_File_Persistence_Database/`](backend/members/Member_07_File_Persistence_Database/) |
-| **08** | **Toast Notifications & Event Queue** | `NotificationService.hpp`, `NotificationService.cpp`| `js/notifications.js` | [`backend/members/Member_08_Notifications_Analytics/`](backend/members/Member_08_Notifications_Analytics/) |
-| **09** | **Micro-Animations, Theming & Utilities** | `Utils.hpp`, `Utils.cpp`, `JsonHelper.hpp` | `js/animations.js`, `css/main.css` | [`backend/members/Member_09_System_Utilities_Json/`](backend/members/Member_09_System_Utilities_Json/) |
-| **10** | **Data Seeder, CLI Terminal & Orchestrator**| `DataSeeder.hpp`, `CLI.hpp`, `main.cpp` | `js/data.js`, `js/app.js` | [`backend/members/Member_10_Data_Seeder_CLI/`](backend/members/Member_10_Data_Seeder_CLI/) |
-
-*Detailed presentation and Viva cheatsheets:*
-- 👉 **[`backend/CPP_TEAM_DISTRIBUTION_GUIDE.md`](backend/CPP_TEAM_DISTRIBUTION_GUIDE.md)** (C++ Architecture & Viva Prep)
-- 👉 **[`frontend/TEAM_DISTRIBUTION_GUIDE.md`](frontend/TEAM_DISTRIBUTION_GUIDE.md)** (Frontend Architecture & Viva Prep)
+## 🎯 Contribution Overview
+Member 08 developed the UI micro-feedback and alerting infrastructure for **PIXORA**:
+1. **Dynamic Toast Notification Engine**:
+   - Injects a responsive fixed container in the bottom right on desktop and centered on mobile.
+   - Supports stacked notifications that auto-dismiss smoothly after 3.4 seconds.
+2. **Context-Aware Alert Types**:
+   - `ToastService.success()`: Green checkmark icon for successful creations and edits.
+   - `ToastService.save()`: Custom save feedback indicating the target board.
+   - `ToastService.heart()`: Red heart reaction for like feedback.
+   - `ToastService.error()`: Crimson warning icon for validation failures.
+   - `ToastService.info()`: Informational updates (theme switch, link copied).
+3. **Interactive Action Pills**:
+   - Toasts can contain functional action buttons (e.g. `[View]` or `[Undo]`) that trigger callback functions when clicked.
+4. **Fluid Motion Physics**:
+   - Custom CSS keyframe transitions: `animate-slide-up` on arrival and `animate-slide-down` on dismissal.
+   - Manual dismiss button (X) for immediate user control.
 
 ---
 
-## 🛠️ How to Build and Run
-
-### 1. Compile the C++ Engine
-Using the included `Makefile`:
-```bash
-make
-```
-*Compiles the native binary `pixora` with `clang++ -std=c++17` (zero external dependencies).*
-
-### 2. Run the C++ Web Server (Default)
-```bash
-./pixora --server 8080
-# Or: make run
-```
-Then open your browser at **`http://localhost:8080`**.
-
-### 3. Run the Interactive Terminal CLI (College Lab Demo)
-```bash
-./pixora --cli
-# Or: make cli
-```
-Launches an interactive menu-driven console program in your terminal:
-```text
-======================================================
-  ✨ PIXORA — C++ Engine (Console & Server Edition) ✨
-        Designed & Engineered by 10 Group Members       
-======================================================
-
-[1] 🖼️  View Pins Feed (10 pins)
-[2] 🔍 Search Pins (by title, tag, author, category)
-[3] ➕ Create a New Pin
-[4] ❤️  Like / 📌 Save a Pin
-[5] 👤 View User Profile
-[6] 📁 View Boards & Collections
-[7] 🔔 View Recent Activity Notifications
-[8] 💾 Save State to Disk (backend/data/pins.json)
-[0] 🚪 Exit CLI
-```
-
-### 4. Run Both Web Server & Terminal Menu
-```bash
-./pixora --both
-# Or: make both
-```
+## 💻 Key Methods & Implementation Details
+- `ToastService.init()`: Ensures the global toast container element exists in `document.body`.
+- `ToastService.show(message, type, action, duration)`: Creates the toast DOM element, attaches SVG icons, configures action callbacks, and sets up the auto-dismiss timer.
+- `ToastService.dismiss(toast)`: Clears timer, initiates slide-down animation, and safely unmounts the node from the DOM after 300ms.
+- Semantic aliases: `ToastService.success()`, `ToastService.save()`, `ToastService.error()`, `ToastService.heart()`, `ToastService.info()`.
 
 ---
 
-## 📁 Repository Structure
+## 🧪 How to Test This Module
+1. Click the red **Save** button on any pin: notice the toast in the bottom-right corner saying *"Saved to 'Dream Architecture' [View]"*.
+2. Click the **[View]** action button inside that toast: notice it immediately navigates you to your Saved Pins collection!
+3. Click the heart icon on a pin: verify the toast displays a red heart icon saying *"Liked pin"*.
+4. Go to **Create Pin** and click **Publish Pin** without uploading an image: verify an error toast with warning icon appears saying *"Please provide an image for your pin."*
+5. Click the **X** on any toast: verify it dismisses immediately without waiting for the timer.
 
-```
-PIXORA/
-├── Makefile                             # Master build automation
-├── .gitignore                           # Git ignore rules
-├── README.md                            # Main project overview
-├── backend/                             # C++17 Core Engine & REST Server
-│   ├── Makefile                         # Backend build script
-│   ├── CPP_TEAM_DISTRIBUTION_GUIDE.md   # C++ 10-member roster & viva guide
-│   ├── include/                         # C++ header files (.hpp)
-│   ├── src/                             # C++ source files (.cpp)
-│   ├── data/                            # Persistent JSON database
-│   └── members/                         # 10 Member C++ folders with READMEs
-└── frontend/                            # Responsive Web Platform
-    ├── index.html                       # SPA HTML entry point
-    ├── css/                             # Stylesheets
-    ├── js/                              # JavaScript modules
-    ├── members/                         # 10 Member Frontend folders with READMEs
-    ├── TEAM_DISTRIBUTION_GUIDE.md       # Frontend 10-member roster & viva guide
-    └── README.md                        # Frontend documentation
-```
+---
+
+## 🎓 Viva / Presentation Q&A Preparation
+- **Q1: Why use a centralized Toast Service instead of standard browser `alert()`?**  
+  *Answer:* Standard `alert()` blocks the JavaScript runtime thread, looks generic, and disrupts user flow. Our custom `ToastService` is asynchronous, non-blocking, beautifully animated, supports custom action buttons, and integrates with the app's visual theme.
+- **Q2: How do you prevent memory leaks when toasts are removed?**  
+  *Answer:* `clearTimeout(toast._timer)` is called to clear any pending timers, and the element is removed from the DOM with `toast.parentNode.removeChild(toast)`.
+- **Q3: How do toasts adapt between desktop and mobile screens?**  
+  *Answer:* On desktop, toasts anchor to `bottom: 24px; right: 24px`. On screens <= 768px, media queries adjust the container to sit above the mobile bottom navigation bar (`bottom: calc(var(--bottom-nav-height) + 16px)`) and expand across the mobile width.
