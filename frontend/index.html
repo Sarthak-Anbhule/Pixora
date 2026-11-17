@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIXORA — Inspire. Collect. Create.</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E60023'%3E%3Cpath d='M12 2a10 10 0 0 0-3.66 19.31c-.05-.8-.1-2.02.02-2.89.11-.79.72-4.99.72-4.99s-.18-.37-.18-.92c0-.86.5-1.5 1.13-1.5.53 0 .79.4.79.88 0 .54-.34 1.34-.52 2.08-.15.62.31 1.13.92 1.13 1.1 0 1.95-1.16 1.95-2.84 0-1.48-1.07-2.52-2.59-2.52-1.77 0-2.8 1.33-2.8 2.7 0 .54.2 1.11.47 1.43a.24.24 0 0 1 .05.23c-.06.24-.19.78-.22.89a.18.18 0 0 1-.26.13c-1.39-.65-2.26-2.67-2.26-4.3 0-3.5 2.54-6.72 7.34-6.72 3.86 0 6.85 2.75 6.85 6.43 0 3.83-2.42 6.92-5.77 6.92-1.13 0-2.19-.59-2.55-1.28l-.7 2.65c-.25.98-.94 2.21-1.4 2.96A10 10 0 1 0 12 2Z'/%3E%3C/svg%3E">
+
+    <!-- CSS Module Imports -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/masonry.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/create.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+    <div class="pixora-app-layout">
+        
+        <!-- ===================================================================
+             1. Desktop Sidebar Navigation (Member 01)
+             =================================================================== -->
+        <aside class="pixora-sidebar" aria-label="Main Navigation">
+            <div class="sidebar-brand">
+                <button class="brand-logo-btn" id="pixora-brand-logo" title="Pixora Home" aria-label="Pixora Home">
+                    <svg class="brand-svg-logo" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2a10 10 0 0 0-3.66 19.31c-.05-.8-.1-2.02.02-2.89.11-.79.72-4.99.72-4.99s-.18-.37-.18-.92c0-.86.5-1.5 1.13-1.5.53 0 .79.4.79.88 0 .54-.34 1.34-.52 2.08-.15.62.31 1.13.92 1.13 1.1 0 1.95-1.16 1.95-2.84 0-1.48-1.07-2.52-2.59-2.52-1.77 0-2.8 1.33-2.8 2.7 0 .54.2 1.11.47 1.43a.24.24 0 0 1 .05.23c-.06.24-.19.78-.22.89a.18.18 0 0 1-.26.13c-1.39-.65-2.26-2.67-2.26-4.3 0-3.5 2.54-6.72 7.34-6.72 3.86 0 6.85 2.75 6.85 6.43 0 3.83-2.42 6.92-5.77 6.92-1.13 0-2.19-.59-2.55-1.28l-.7 2.65c-.25.98-.94 2.21-1.4 2.96A10 10 0 1 0 12 2Z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <ul class="sidebar-nav-list">
+                <li class="sidebar-nav-item">
+                    <button class="sidebar-nav-btn is-active" data-nav-target="home" title="Home Feed" aria-label="Home">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                    </button>
+                </li>
+                <li class="sidebar-nav-item">
+                    <button class="sidebar-nav-btn" data-nav-target="explore" title="Explore Trends" aria-label="Explore">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+                        </svg>
+                    </button>
+                </li>
+                <li class="sidebar-nav-item">
+                    <button class="sidebar-nav-btn sidebar-create-btn" data-nav-target="create" title="Create Pin" aria-label="Create Pin">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                    </button>
+                </li>
+                <li class="sidebar-nav-item">
+                    <button class="sidebar-nav-btn" data-nav-target="saved" title="Saved Pins" aria-label="Saved Pins">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+                        </svg>
+                        <span class="nav-saved-badge" id="sidebar-saved-badge">0</span>
+                    </button>
+                </li>
+                <li class="sidebar-nav-item">
+                    <button class="sidebar-nav-btn" data-nav-target="profile" title="Your Profile" aria-label="Your Profile">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+
+            <div class="sidebar-bottom-controls">
+                <button class="sidebar-nav-btn" id="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                    <span id="theme-toggle-icon">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </span>
+                </button>
+                <button class="sidebar-nav-btn" id="sidebar-settings-btn" title="App Settings" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+            </div>
+        </aside>
+
+        <!-- ===================================================================
+             Main Content Area
+             =================================================================== -->
+        <main class="main-content-area">
+            
+            <!-- ---------------------------------------------------------------
+                 Sticky Top Header (Member 01 & Member 06)
+                 --------------------------------------------------------------- -->
+            <header class="pixora-top-header">
+                <div class="header-search-wrapper">
+                    <svg class="search-icon-left" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.3">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <input 
+                        type="search" 
+                        id="global-search-input" 
+                        class="search-input-box" 
+                        placeholder="Search for architecture, minimalism, fashion, setups..." 
+                        aria-label="Search pins"
+                        autocomplete="off"
+                    />
+                    <button class="search-clear-btn" id="clear-search-btn" aria-label="Clear search">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                </div>
+
+                <div class="header-right-actions">
+                    <button class="header-action-btn" id="header-notif-btn" title="Notifications" aria-label="Notifications">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                        </svg>
+                        <span class="unread-dot"></span>
+                    </button>
+
+                    <button class="header-avatar-btn" id="header-user-avatar-btn" title="View Profile" aria-label="Profile">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Elena Vance" class="header-avatar-img" />
+                    </button>
+
+                    <!-- Notifications Dropdown -->
+                    <div class="notif-dropdown-menu" id="header-notif-dropdown">
+                        <div class="notif-menu-header">
+                            <span class="notif-menu-title">Notifications</span>
+                            <span class="explore-pill-tag" style="margin-bottom:0;">Live Updates</span>
+                        </div>
+                        <ul class="notif-list">
+                            <li class="notif-item">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="notif-thumb" alt="Kasper" />
+                                <div class="notif-content">
+                                    <p class="notif-text"><strong>Kasper Lindqvist</strong> saved your pin <em>Concrete Monolith</em>.</p>
+                                    <span class="notif-time">2 hours ago</span>
+                                </div>
+                            </li>
+                            <li class="notif-item">
+                                <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=100&q=80" class="notif-thumb" alt="Oliver" />
+                                <div class="notif-content">
+                                    <p class="notif-text"><strong>Oliver Thorne</strong> started following your inspiration boards.</p>
+                                    <span class="notif-time">5 hours ago</span>
+                                </div>
+                            </li>
+                            <li class="notif-item">
+                                <img src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=100&q=80" class="notif-thumb" alt="Pin" />
+                                <div class="notif-content">
+                                    <p class="notif-text">Your board <strong>Dream Architecture</strong> is trending with 1.4k views today.</p>
+                                    <span class="notif-time">Yesterday</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ---------------------------------------------------------------
+                 VIEW 1: Home Feed (Member 02 & Member 06)
+                 --------------------------------------------------------------- -->
+            <section id="view-home" class="view-content-wrapper active-view">
+                <!-- Category Horizontal Scroll Pills -->
+                <div class="category-filter-wrapper">
+                    <div class="category-chips-scroll" id="category-filter-chips"></div>
+                </div>
+
+                <!-- Masonry Feed Container -->
+                <div class="pins-masonry-grid" id="pins-masonry-grid"></div>
+            </section>
+
+            <!-- ---------------------------------------------------------------
+                 VIEW 2: Explore Trends (Member 01 & Member 10)
+                 --------------------------------------------------------------- -->
+            <section id="view-explore" class="view-content-wrapper hidden-view">
+                <div id="explore-featured-container"></div>
+            </section>
+
+            <!-- ---------------------------------------------------------------
+                 VIEW 3: Create Pin Studio (Member 04)
+                 --------------------------------------------------------------- -->
+            <section id="view-create" class="view-content-wrapper hidden-view">
+                <div class="create-pin-container">
+                    <div class="create-pin-header">
+                        <h2 class="create-studio-title">Create Pin Studio</h2>
+                        <button type="submit" form="create-pin-form" class="pixora-btn-primary" id="publish-pin-btn">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            Publish Pin
+                        </button>
+                    </div>
+
+                    <form id="create-pin-form" class="create-form-layout">
+                        <!-- Left Media Upload Column -->
+                        <div class="create-media-column">
+                            <div class="dropzone-box" id="create-dropzone">
+                                <input type="file" id="create-file-input" accept="image/*" class="visually-hidden" />
+                                <div class="dropzone-empty-content">
+                                    <div class="upload-icon-circle">
+                                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                    </div>
+                                    <h4 class="upload-heading">Choose a file or drag and drop it here</h4>
+                                    <p class="upload-sub">We recommend high-quality .jpg or .png files under 4MB</p>
+                                    
+                                    <div class="url-input-strip" onclick="event.stopPropagation()">
+                                        <input type="url" id="create-image-url" placeholder="Or paste an image URL..." class="url-input" />
+                                        <button type="button" id="load-url-btn" class="url-btn">Load</button>
+                                    </div>
+
+                                    <div class="sample-images-bar" onclick="event.stopPropagation()">
+                                        <span class="sample-label">Quick samples:</span>
+                                        <button type="button" class="sample-pill" data-sample="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&q=80">Minimal Art</button>
+                                        <button type="button" class="sample-pill" data-sample="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80">Skyscraper</button>
+                                        <button type="button" class="sample-pill" data-sample="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80">Tropical Beach</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Details Form Column -->
+                        <div class="create-fields-column">
+                            <div class="form-group">
+                                <input 
+                                    type="text" 
+                                    id="create-pin-title" 
+                                    class="field-title-input" 
+                                    placeholder="Add a title..." 
+                                    maxlength="100" 
+                                    required 
+                                />
+                            </div>
+
+                            <div class="form-group">
+                                <textarea 
+                                    id="create-pin-desc" 
+                                    class="field-desc-input" 
+                                    placeholder="Add a detailed description of what your pin is about..." 
+                                    maxlength="600"
+                                ></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="create-pin-link">Link</label>
+                                <input 
+                                    type="url" 
+                                    id="create-pin-link" 
+                                    class="field-standard-input" 
+                                    placeholder="Add a destination link (e.g. https://yourwebsite.com)" 
+                                />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Board</label>
+                                <div class="board-selection-row">
+                                    <select id="create-board-select" class="field-standard-select" style="flex: 1;"></select>
+                                    <button type="button" id="inline-new-board-btn" class="pixora-btn-secondary" style="padding: 0 16px;">
+                                        + New Board
+                                    </button>
+                                </div>
+                                <div id="inline-new-board-group" class="inline-board-input-group hidden">
+                                    <input type="text" id="inline-new-board-input" class="inline-board-input" placeholder="Board name..." />
+                                    <button type="button" id="inline-save-board-btn" class="pixora-btn-primary" style="padding: 6px 14px; font-size: 13px;">Save</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="create-pin-category">Category</label>
+                                <select id="create-pin-category" class="field-standard-select">
+                                    <option value="architecture">Architecture</option>
+                                    <option value="art-design" selected>Art & Design</option>
+                                    <option value="nature">Nature & Escapes</option>
+                                    <option value="photography">Photography</option>
+                                    <option value="fashion">Fashion & Style</option>
+                                    <option value="tech">Tech & Workspaces</option>
+                                    <option value="interiors">Interior Decor</option>
+                                    <option value="food">Culinary Art</option>
+                                    <option value="travel">Travel Guides</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="create-pin-tags">Tags</label>
+                                <input 
+                                    type="text" 
+                                    id="create-pin-tags" 
+                                    class="field-standard-input" 
+                                    placeholder="minimalist, modern, design, setup (comma separated)" 
+                                />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- ---------------------------------------------------------------
+                 VIEW 4: Saved Pins (Member 01 & Member 07)
+                 --------------------------------------------------------------- -->
+            <section id="view-saved" class="view-content-wrapper hidden-view">
+                <div class="boards-top-bar">
+                    <div>
+                        <h2 class="active-board-heading">Your Saved Pins</h2>
+                        <span class="active-board-count">Pins you've collected from across Pixora</span>
+                    </div>
+                </div>
+                <div class="pins-masonry-grid" id="saved-pins-grid"></div>
+            </section>
+
+            <!-- ---------------------------------------------------------------
+                 VIEW 5: Profile & Boards (Member 05)
+                 --------------------------------------------------------------- -->
+            <section id="view-profile" class="view-content-wrapper hidden-view">
+                <div id="profile-header-container"></div>
+                
+                <!-- Profile Tabs (Created / Saved / Boards) -->
+                <nav class="profile-tabs-nav" aria-label="Profile Sections">
+                    <button class="profile-tab-btn is-active" data-tab="saved">Saved Pins</button>
+                    <button class="profile-tab-btn" data-tab="boards">Boards</button>
+                    <button class="profile-tab-btn" data-tab="created">Created Pins</button>
+                </nav>
+
+                <div id="profile-tab-content"></div>
+            </section>
+
+        </main>
+
+        <!-- ===================================================================
+             Mobile Bottom Navigation Bar (Member 01 & Member 09)
+             =================================================================== -->
+        <nav class="pixora-bottom-nav" aria-label="Mobile Navigation">
+            <button class="bottom-nav-item is-active" data-nav-target="home" aria-label="Home">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.3">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                </svg>
+            </button>
+            <button class="bottom-nav-item" data-nav-target="explore" aria-label="Explore">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.3">
+                    <circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+                </svg>
+            </button>
+            <button class="bottom-nav-item bottom-create-btn" data-nav-target="create" aria-label="Create Pin">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="3">
+                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+            </button>
+            <button class="bottom-nav-item" data-nav-target="saved" aria-label="Saved Pins">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.3">
+                    <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+                </svg>
+            </button>
+            <button class="bottom-nav-item" data-nav-target="profile" aria-label="Profile">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.3">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                </svg>
+            </button>
+        </nav>
+
+    </div>
+
+    <!-- ===================================================================
+         MODALS & OVERLAYS
+         =================================================================== -->
+
+    <!-- Pin Detail Modal (Member 03) -->
+    <div class="pixora-modal-overlay" id="pin-detail-modal-overlay" role="dialog" aria-modal="true" aria-label="Pin Details">
+        <div class="modal-container"></div>
+    </div>
+
+    <!-- Edit Profile Modal (Member 05) -->
+    <div class="pixora-modal-overlay" id="edit-profile-modal" role="dialog" aria-modal="true" aria-label="Edit Profile">
+        <div class="standard-modal-box">
+            <div class="modal-title-bar">
+                <h3 class="modal-dialog-title">Edit Your Profile</h3>
+                <button type="button" class="icon-circle-btn" id="close-edit-profile-modal">&times;</button>
+            </div>
+            <form id="edit-profile-form">
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label class="form-label" for="edit-profile-name">Display Name</label>
+                    <input type="text" id="edit-profile-name" class="field-standard-input" required />
+                </div>
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label class="form-label" for="edit-profile-bio">Bio</label>
+                    <textarea id="edit-profile-bio" class="field-standard-input" style="height: 80px; padding: 10px;"></textarea>
+                </div>
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label class="form-label" for="edit-profile-location">Location</label>
+                    <input type="text" id="edit-profile-location" class="field-standard-input" />
+                </div>
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label class="form-label" for="edit-profile-website">Website</label>
+                    <input type="url" id="edit-profile-website" class="field-standard-input" />
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label class="form-label" for="edit-profile-avatar">Avatar Image URL</label>
+                    <input type="url" id="edit-profile-avatar" class="field-standard-input" />
+                </div>
+                <div class="modal-actions-footer">
+                    <button type="submit" class="pixora-btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Create Board Modal (Member 05) -->
+    <div class="pixora-modal-overlay" id="create-board-modal" role="dialog" aria-modal="true" aria-label="Create Board">
+        <div class="standard-modal-box">
+            <div class="modal-title-bar">
+                <h3 class="modal-dialog-title">Create Board</h3>
+                <button type="button" class="icon-circle-btn" id="close-create-board-modal">&times;</button>
+            </div>
+            <form id="create-board-form">
+                <div class="form-group" style="margin-bottom: 16px;">
+                    <label class="form-label" for="new-board-title">Board Name</label>
+                    <input type="text" id="new-board-title" class="field-standard-input" placeholder="Like 'Places to Visit' or 'Recipes to Make'" required />
+                </div>
+                <div class="form-group" style="margin-bottom: 16px;">
+                    <label class="form-label" for="new-board-desc">Description (Optional)</label>
+                    <textarea id="new-board-desc" class="field-standard-input" style="height: 70px; padding: 10px;" placeholder="What is this board about?"></textarea>
+                </div>
+                <div class="form-group" style="flex-direction: row; align-items: center; gap: 10px; margin-bottom: 24px;">
+                    <input type="checkbox" id="new-board-private" style="width: 18px; height: 18px; cursor: pointer;" />
+                    <label for="new-board-private" style="font-size: 14px; font-weight: 600; cursor: pointer;">Keep this board secret (only visible to you)</label>
+                </div>
+                <div class="modal-actions-footer">
+                    <button type="submit" class="pixora-btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Settings & Demo Reset Modal (Member 01) -->
+    <div class="pixora-modal-overlay" id="settings-modal" role="dialog" aria-modal="true" aria-label="Settings">
+        <div class="standard-modal-box">
+            <div class="modal-title-bar">
+                <h3 class="modal-dialog-title">Pixora Settings</h3>
+                <button type="button" class="icon-circle-btn" id="close-settings-modal">&times;</button>
+            </div>
+            <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px;">
+                <p><strong>PIXORA Premium Social Platform</strong></p>
+                <p>Designed and engineered collaboratively by a 10-member team using modular HTML5, CSS3, and modern Vanilla ES6+ JavaScript.</p>
+                <div style="margin-top: 14px; padding: 12px; background-color: var(--bg-surface); border-radius: 12px;">
+                    <p style="font-size: 13px; font-weight: 600;">Data Management:</p>
+                    <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">You can reset all localStorage state back to the factory sample data at any time.</p>
+                </div>
+            </div>
+            <div class="modal-actions-footer" style="justify-content: space-between;">
+                <button type="button" class="pixora-btn-secondary" id="reset-demo-data-btn" style="color: var(--color-primary);">
+                    Reset Demo Data
+                </button>
+                <button type="button" class="pixora-btn-primary" onclick="document.getElementById('settings-modal').classList.remove('is-active')">
+                    Done
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================
+         JAVASCRIPT MODULES (Member 01 to Member 10)
+         =================================================================== -->
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/masonry.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/create.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

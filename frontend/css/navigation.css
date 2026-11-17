@@ -1,0 +1,439 @@
+/* ==========================================================================
+   PIXORA - Navigation & App Header Stylesheet
+   Contributed by: Member 01 (Layout, Sidebar & Header Architecture)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Desktop Sidebar (Left)
+   -------------------------------------------------------------------------- */
+.pixora-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-width);
+    background-color: var(--bg-page);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 0;
+    z-index: 90;
+    transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.sidebar-brand {
+    margin-bottom: 24px;
+}
+
+.brand-logo-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    transition: transform var(--transition-spring), background-color var(--transition-fast);
+}
+
+.brand-logo-btn:hover {
+    background-color: var(--color-primary-light);
+    transform: scale(1.08);
+}
+
+.brand-svg-logo {
+    width: 32px;
+    height: 32px;
+}
+
+.sidebar-nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    list-style: none;
+    width: 100%;
+}
+
+.sidebar-nav-item {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar-nav-btn {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+
+.sidebar-nav-btn:hover {
+    background-color: var(--bg-pill-hover);
+    color: var(--text-primary);
+}
+
+.sidebar-nav-btn.is-active {
+    background-color: var(--text-primary);
+    color: var(--text-inverse);
+}
+
+body.dark-theme .sidebar-nav-btn.is-active {
+    background-color: #FFFFFF;
+    color: #111111;
+}
+
+.sidebar-create-btn {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.sidebar-create-btn:hover {
+    background-color: var(--color-primary);
+    color: #FFFFFF;
+}
+
+.sidebar-create-btn.is-active {
+    background-color: var(--color-primary);
+    color: #FFFFFF;
+}
+
+/* Badge for Saved items */
+.nav-saved-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background-color: var(--color-primary);
+    color: #FFFFFF;
+    font-size: 10px;
+    font-weight: 700;
+    min-width: 16px;
+    height: 16px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Sidebar Bottom Controls */
+.sidebar-bottom-controls {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   Sticky Top Header
+   -------------------------------------------------------------------------- */
+.pixora-top-header {
+    position: sticky;
+    top: 0;
+    height: var(--header-height);
+    background-color: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    z-index: 80;
+    transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+body.dark-theme .pixora-top-header {
+    background-color: rgba(18, 18, 20, 0.88);
+}
+
+/* Omnibox Search Bar */
+.header-search-wrapper {
+    flex: 1;
+    max-width: 920px;
+    position: relative;
+    margin: 0 24px;
+}
+
+.search-input-box {
+    width: 100%;
+    height: 48px;
+    background-color: var(--bg-input);
+    border: 2px solid transparent;
+    border-radius: var(--radius-full);
+    padding: 0 46px 0 48px;
+    font-size: 16px;
+    color: var(--text-primary);
+    font-family: inherit;
+    transition: all var(--transition-fast);
+}
+
+.search-input-box:hover {
+    background-color: var(--bg-input-hover);
+}
+
+.search-input-box:focus {
+    background-color: var(--bg-page);
+    border-color: var(--border-focus);
+    box-shadow: var(--shadow-sm);
+    outline: none;
+}
+
+.search-icon-left {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.search-clear-btn {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-full);
+    background-color: var(--bg-pill-hover);
+    color: var(--text-secondary);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-clear-btn:hover {
+    background-color: var(--text-muted);
+    color: #FFFFFF;
+}
+
+/* Header Right Actions */
+.header-right-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-action-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    position: relative;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.header-action-btn:hover {
+    background-color: var(--bg-pill);
+    color: var(--text-primary);
+}
+
+.unread-dot {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-primary);
+    border-radius: var(--radius-full);
+    border: 2px solid var(--bg-page);
+}
+
+/* User avatar button */
+.header-avatar-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    padding: 2px;
+    border: 2px solid transparent;
+    transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.header-avatar-btn:hover {
+    border-color: var(--color-primary);
+    transform: scale(1.05);
+}
+
+.header-avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+}
+
+/* Notifications Dropdown */
+.notif-dropdown-menu {
+    position: absolute;
+    top: calc(var(--header-height) - 10px);
+    right: 28px;
+    width: 340px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 100;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.notif-dropdown-menu.is-active {
+    display: flex;
+}
+
+.notif-menu-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.notif-menu-title {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.notif-list {
+    max-height: 380px;
+    overflow-y: auto;
+    list-style: none;
+}
+
+.notif-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border-light);
+    transition: background-color var(--transition-fast);
+}
+
+.notif-item:hover {
+    background-color: var(--bg-card-hover);
+}
+
+.notif-thumb {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+}
+
+.notif-text {
+    font-size: 13px;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+.notif-time {
+    display: block;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Bottom Navigation Bar
+   -------------------------------------------------------------------------- */
+.pixora-bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--bottom-nav-height);
+    background-color: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--border-color);
+    z-index: 95;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 12px;
+}
+
+body.dark-theme .pixora-bottom-nav {
+    background-color: rgba(18, 18, 20, 0.94);
+}
+
+.bottom-nav-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    color: var(--text-secondary);
+    border-radius: var(--radius-full);
+}
+
+.bottom-nav-item.is-active {
+    color: var(--color-primary);
+}
+
+.bottom-create-btn {
+    width: 44px;
+    height: 44px;
+    background-color: var(--color-primary);
+    color: #FFFFFF !important;
+    border-radius: var(--radius-full);
+    box-shadow: 0 4px 12px var(--color-primary-glow);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .pixora-sidebar {
+        display: none;
+    }
+
+    .main-content-area {
+        margin-left: 0;
+        padding-bottom: var(--bottom-nav-height);
+    }
+
+    .pixora-bottom-nav {
+        display: flex;
+    }
+
+    .pixora-top-header {
+        padding: 0 16px;
+        height: 64px;
+    }
+
+    .header-search-wrapper {
+        margin: 0 10px;
+    }
+
+    .search-input-box {
+        height: 40px;
+        font-size: 14px;
+        padding-left: 40px;
+    }
+
+    .search-icon-left {
+        left: 12px;
+    }
+
+    .view-content-wrapper {
+        padding: 12px 14px 64px;
+    }
+}

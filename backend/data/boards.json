@@ -1,0 +1,7 @@
+[
+{"id":"board-1","title":"Dream Architecture","description":"Brutalist, organic, and ultra-modern spaces.","coverImage":"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80","pinCount":6,"isPrivate":false,"createdAt":"2026-11-17"},
+{"id":"board-2","title":"Minimalist Workspaces","description":"Clean setups, mechanical keyboards, natural walnut desks.","coverImage":"https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80","pinCount":5,"isPrivate":false,"createdAt":"2026-11-17"},
+{"id":"board-3","title":"Nordic & Earthy Tones","description":"Ceramics, warm textiles, linen couches and soft light.","coverImage":"https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80","pinCount":4,"isPrivate":true,"createdAt":"2026-11-17"},
+{"id":"board-4","title":"Editorial & Street Style","description":"High fashion silhouettes, monochrome looks, vintage leather.","coverImage":"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80","pinCount":5,"isPrivate":false,"createdAt":"2026-11-17"},
+{"id":"board-5","title":"Alpine Wanderlust","description":"Misty pine valleys, glacial blue lakes, and cabin retreats.","coverImage":"https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80","pinCount":4,"isPrivate":false,"createdAt":"2026-11-17"}
+]
