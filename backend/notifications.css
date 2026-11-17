@@ -1,0 +1,122 @@
+/* ==========================================================================
+   PIXORA - Member 08 Contribution Stylesheet
+   Toast Notifications & Feedback Mechanics
+   ========================================================================== */
+
+.pixora-toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .pixora-toast-container {
+        bottom: calc(var(--bottom-nav-height) + 16px);
+        left: 16px;
+        right: 16px;
+        align-items: center;
+    }
+}
+
+.pixora-toast {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    background-color: #111111;
+    color: #FFFFFF;
+    padding: 12px 18px;
+    border-radius: var(--radius-full);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    min-width: 280px;
+    max-width: 440px;
+}
+
+body.dark-theme .pixora-toast {
+    background-color: #27272C;
+    border: 1px solid var(--border-color);
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.toast-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #10B981;
+}
+
+.toast-heart .toast-icon-wrapper {
+    color: var(--color-primary);
+}
+
+.toast-msg {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.toast-action-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    transition: background-color var(--transition-fast);
+}
+
+.toast-action-btn:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+.toast-close-btn {
+    color: #8E8E93;
+    font-size: 18px;
+    padding: 0 4px;
+    line-height: 1;
+}
+
+.toast-close-btn:hover {
+    color: #FFFFFF;
+}
+
+.animate-slide-up {
+    animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-down {
+    animation: toastOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes toastOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+}
