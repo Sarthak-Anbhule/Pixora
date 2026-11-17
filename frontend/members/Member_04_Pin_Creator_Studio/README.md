@@ -1,7 +1,7 @@
 # Member 04: Pin Creation Studio & Media Ingestion
 
 ## 👤 Member Information
-- **Name / Assignee:** Member 04
+- **Name / Assignee:** Sarthak Anbhule (Member 04)
 - **Module Name:** Pin Creation Studio & Media Processor
 - **Primary Source Files:** `frontend/js/create.js`, `frontend/css/create.css`
 

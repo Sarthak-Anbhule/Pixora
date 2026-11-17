@@ -11,7 +11,7 @@ This document outlines the complete architectural division of **PIXORA** across 
 | **01** | *Member 1* | **Navigation Shell & SPA Routing** | `js/navigation.js`, `css/navigation.css` | [`Member_01_Navigation_Layout/`](./members/Member_01_Navigation_Layout/) |
 | **02** | *Member 2* | **Masonry Grid Engine & Pin Rendering** | `js/masonry.js`, `css/masonry.css` | [`Member_02_Masonry_Grid_Engine/`](./members/Member_02_Masonry_Grid_Engine/) |
 | **03** | *Member 3* | **Pin Detail Modal & Social Feedback** | `js/modal.js`, `css/modal.css` | [`Member_03_Pin_Detail_Modal/`](./members/Member_03_Pin_Detail_Modal/) |
-| **04** | *Member 4* | **Pin Creation Studio & Media Ingestion** | `js/create.js`, `css/create.css` | [`Member_04_Pin_Creator_Studio/`](./members/Member_04_Pin_Creator_Studio/) |
+| **04** | **Sarthak Anbhule** | **Pin Creation Studio & Media Ingestion** | `js/create.js`, `css/create.css` | [`Member_04_Pin_Creator_Studio/`](./members/Member_04_Pin_Creator_Studio/) |
 | **05** | *Member 5* | **User Profile & Board Collections** | `js/profile.js`, `css/profile.css` | [`Member_05_Profile_And_Boards/`](./members/Member_05_Profile_And_Boards/) |
 | **06** | *Member 6* | **Search Engine & Category Filters** | `js/search.js`, `css/components.css` | [`Member_06_Search_And_Filtering/`](./members/Member_06_Search_And_Filtering/) |
 | **07** | *Member 7* | **Storage & State Persistence Layer** | `js/storage.js` | [`Member_07_Storage_And_State_Persistence/`](./members/Member_07_Storage_And_State_Persistence/) |

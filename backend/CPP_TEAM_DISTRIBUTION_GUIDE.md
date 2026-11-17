@@ -11,7 +11,7 @@ This document details the **C++ Object-Oriented Architecture** of **PIXORA**, di
 | **01** | *Member 1* | **HTTP Web Server & Socket Engine** | `HttpServer.hpp`, `HttpServer.cpp` | [`backend/members/Member_01_Server_Controller/`](./members/Member_01_Server_Controller/) |
 | **02** | *Member 2* | **Pin Model & Feed In-Memory Manager** | `Pin.hpp`, `Pin.cpp`, `FeedManager.hpp`, `FeedManager.cpp` | [`backend/members/Member_02_Pin_Feed_Manager/`](./members/Member_02_Pin_Feed_Manager/) |
 | **03** | *Member 3* | **Social Interaction Engine** | `InteractionManager.hpp`, `InteractionManager.cpp` | [`backend/members/Member_03_Interaction_Engine/`](./members/Member_03_Interaction_Engine/) |
-| **04** | *Member 4* | **Pin Ingestion Studio & Validation** | `PinCreator.hpp`, `PinCreator.cpp` | [`backend/members/Member_04_Pin_Ingestion_Studio/`](./members/Member_04_Pin_Ingestion_Studio/) |
+| **04** | **Sarthak Anbhule** | **Pin Ingestion Studio & Validation** | `PinCreator.hpp`, `PinCreator.cpp` | [`backend/members/Member_04_Pin_Ingestion_Studio/`](./members/Member_04_Pin_Ingestion_Studio/) |
 | **05** | *Member 5* | **User Profile & Board Models** | `Profile.hpp`, `Profile.cpp`, `Board.hpp`, `Board.cpp` | [`backend/members/Member_05_Profile_And_Boards/`](./members/Member_05_Profile_And_Boards/) |
 | **06** | *Member 6* | **Search & Relevance Ranking Algorithm**| `SearchEngine.hpp`, `SearchEngine.cpp` | [`backend/members/Member_06_Search_Filter_Algorithm/`](./members/Member_06_Search_Filter_Algorithm/) |
 | **07** | *Member 7* | **File Streams & Database Persistence** | `DatabaseManager.hpp`, `DatabaseManager.cpp` | [`backend/members/Member_07_File_Persistence_Database/`](./members/Member_07_File_Persistence_Database/) |

@@ -1,7 +1,7 @@
 # Member 04: Pin Ingestion Studio & Media Validator
 
 ## 👤 Member Information
-- **Name / Assignee:** Member 04
+- **Name / Assignee:** Sarthak Anbhule (Member 04)
 - **Role:** Pin Ingestion, Validation & Tag Parsing
 - **Files Owned:** `PinCreator.hpp`, `PinCreator.cpp`
 - **Core Technology:** C++17, String Parsing, Validation Pipelines
