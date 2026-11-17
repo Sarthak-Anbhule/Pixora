@@ -1,0 +1,25 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Compiled binaries and object files
+pixora
+backend/pixora
+*.o
+*.obj
+*.exe
+*.out
+*.app
+*.dSYM/
+
+# IDE and Editor configurations
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary and log files
+*.log

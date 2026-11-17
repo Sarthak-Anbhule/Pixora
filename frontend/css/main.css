@@ -1,0 +1,264 @@
+/* ==========================================================================
+   PIXORA - Core Stylesheet & Design Tokens
+   Contributed by: Member 01 & Member 09
+   ========================================================================== */
+
+:root {
+    /* Brand Accent Colors */
+    --color-primary: #E60023;
+    --color-primary-hover: #b8001b;
+    --color-primary-light: rgba(230, 0, 35, 0.08);
+    --color-primary-glow: rgba(230, 0, 35, 0.25);
+
+    /* Neutral Colors (Light Theme) */
+    --bg-page: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F8F8F9;
+    --bg-input: #EFEFEF;
+    --bg-input-hover: #E2E2E2;
+    --bg-surface: #F0F0F2;
+    --bg-pill: #F0F0F2;
+    --bg-pill-hover: #E4E4E6;
+    
+    /* Text Colors */
+    --text-primary: #111111;
+    --text-secondary: #5F5F5F;
+    --text-muted: #8E8E93;
+    --text-inverse: #FFFFFF;
+
+    /* Borders & Dividers */
+    --border-color: #E6E6E8;
+    --border-light: #F0F0F2;
+    --border-focus: #111111;
+
+    /* Shadows & Elevation */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.06);
+    --shadow-pin-hover: 0 14px 30px rgba(0, 0, 0, 0.14);
+
+    /* Radii */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 9999px;
+
+    /* Layout Dimensions */
+    --sidebar-width: 80px;
+    --header-height: 80px;
+    --bottom-nav-height: 64px;
+
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Dark Theme Overrides */
+body.dark-theme {
+    --bg-page: #121214;
+    --bg-card: #1E1E22;
+    --bg-card-hover: #26262B;
+    --bg-input: #27272C;
+    --bg-input-hover: #323238;
+    --bg-surface: #222226;
+    --bg-pill: #27272C;
+    --bg-pill-hover: #35353C;
+
+    --text-primary: #F5F5F7;
+    --text-secondary: #A1A1A6;
+    --text-muted: #6E6E73;
+    --text-inverse: #121214;
+
+    --border-color: #2E2E33;
+    --border-light: #242428;
+    --border-focus: #FFFFFF;
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+    --shadow-pin-hover: 0 14px 34px rgba(0, 0, 0, 0.65);
+}
+
+/* ==========================================================================
+   Base & Reset
+   ========================================================================== */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.5;
+    transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+/* Layout Shell */
+.pixora-app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content-area {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    transition: margin-left var(--transition-base);
+}
+
+.view-content-wrapper {
+    flex: 1;
+    padding: 16px 28px 48px;
+    max-width: 1920px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* View Visibility */
+.hidden-view {
+    display: none !important;
+}
+
+.active-view {
+    display: block;
+    animation: fadeIn var(--transition-base) ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Global Buttons */
+button {
+    font-family: inherit;
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    transition: all var(--transition-fast);
+}
+
+.pixora-btn-primary {
+    background-color: var(--color-primary);
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 12px 22px;
+    border-radius: var(--radius-full);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px var(--color-primary-glow);
+    transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.pixora-btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    transform: scale(1.02);
+    box-shadow: 0 6px 16px var(--color-primary-glow);
+}
+
+.pixora-btn-primary:active {
+    transform: scale(0.97);
+}
+
+.pixora-btn-primary.btn-saved-state {
+    background-color: #111111;
+    color: #FFFFFF;
+    box-shadow: none;
+}
+
+body.dark-theme .pixora-btn-primary.btn-saved-state {
+    background-color: #35353C;
+    color: #FFFFFF;
+}
+
+.pixora-btn-secondary {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 12px 20px;
+    border-radius: var(--radius-full);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.pixora-btn-secondary:hover {
+    background-color: var(--bg-pill-hover);
+    transform: scale(1.02);
+}
+
+.pixora-btn-secondary:active {
+    transform: scale(0.97);
+}
+
+.pixora-btn-secondary.btn-following {
+    background-color: #111111;
+    color: #FFFFFF;
+}
+
+body.dark-theme .pixora-btn-secondary.btn-following {
+    background-color: #FFFFFF;
+    color: #111111;
+}
+
+/* Utilities */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Ripple effect */
+.btn-ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: rippleEffect 0.6s linear;
+    background-color: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+}
+
+@keyframes rippleEffect {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}

@@ -1,0 +1,391 @@
+/* ==========================================================================
+   PIXORA - Masonry Grid & Pin Card Stylesheet
+   Contributed by: Member 02 (Masonry Layout & Card Architecture)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Masonry Grid Columns
+   -------------------------------------------------------------------------- */
+.pins-grid-layout,
+.pins-masonry-grid {
+    column-count: 5;
+    column-gap: 16px;
+    width: 100%;
+}
+
+@media (max-width: 1600px) {
+    .pins-grid-layout,
+    .pins-masonry-grid {
+        column-count: 4;
+    }
+}
+
+@media (max-width: 1200px) {
+    .pins-grid-layout,
+    .pins-masonry-grid {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 840px) {
+    .pins-grid-layout,
+    .pins-masonry-grid {
+        column-count: 2;
+        column-gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pins-grid-layout,
+    .pins-masonry-grid {
+        column-count: 2;
+        column-gap: 10px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Pin Card Container
+   -------------------------------------------------------------------------- */
+.pin-card {
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    transition: transform var(--transition-fast);
+}
+
+.pin-card:hover {
+    transform: translateY(-2px);
+}
+
+.pin-media-wrapper {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: var(--bg-surface);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-fast);
+}
+
+.pin-card:hover .pin-media-wrapper {
+    box-shadow: var(--shadow-pin-hover);
+}
+
+.pin-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    transition: filter var(--transition-base), transform var(--transition-base);
+    filter: brightness(0.98);
+}
+
+.pin-card:hover .pin-image {
+    filter: brightness(0.92);
+}
+
+/* --------------------------------------------------------------------------
+   Pin Hover Overlay & Action Controls
+   -------------------------------------------------------------------------- */
+.pin-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.45) 0%,
+        rgba(0, 0, 0, 0) 30%,
+        rgba(0, 0, 0, 0) 65%,
+        rgba(0, 0, 0, 0.55) 100%
+    );
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 14px;
+    transition: opacity var(--transition-fast);
+    border-radius: var(--radius-md);
+    z-index: 2;
+}
+
+.pin-card:hover .pin-overlay,
+.pin-card:focus .pin-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Top bar of overlay */
+.overlay-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pin-board-tag {
+    font-size: 12px;
+    font-weight: 600;
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pin-action-btn {
+    padding: 10px 18px;
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all var(--transition-fast);
+}
+
+.pin-btn-save {
+    background-color: var(--color-primary);
+    color: #FFFFFF;
+}
+
+.pin-btn-save:hover {
+    background-color: var(--color-primary-hover);
+    transform: scale(1.05);
+}
+
+.pin-btn-saved {
+    background-color: #111111;
+    color: #FFFFFF;
+}
+
+.pin-btn-saved:hover {
+    background-color: #2b2b2b;
+}
+
+/* Bottom bar of overlay */
+.overlay-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pin-source-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #111111;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    max-width: 130px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color var(--transition-fast);
+}
+
+.pin-source-badge:hover {
+    background-color: #FFFFFF;
+}
+
+.overlay-icons-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pin-icon-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-full);
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #111111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.pin-icon-btn:hover {
+    background-color: #FFFFFF;
+    transform: scale(1.1);
+}
+
+/* --------------------------------------------------------------------------
+   Pin Card Meta (Title, Author, Likes)
+   -------------------------------------------------------------------------- */
+.pin-card-meta {
+    padding: 8px 4px 4px;
+}
+
+.pin-title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.pin-author-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pin-author-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+.pin-author-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.pin-author-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pin-like-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 4px 6px;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.pin-like-btn:hover {
+    color: var(--color-primary);
+    transform: scale(1.05);
+}
+
+.pin-like-btn.is-liked {
+    color: var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Empty State & Skeletons
+   -------------------------------------------------------------------------- */
+.empty-state-container {
+    column-span: all;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 72px 24px;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.empty-state-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-full);
+    background-color: var(--bg-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.empty-state-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.empty-state-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+/* Shimmer Loading Skeleton */
+.skeleton-card {
+    margin-bottom: 20px;
+    break-inside: avoid;
+}
+
+.skeleton-media {
+    border-radius: var(--radius-md);
+    background: linear-gradient(90deg, var(--bg-surface) 25%, var(--bg-pill-hover) 50%, var(--bg-surface) 75%);
+    background-size: 200% 100%;
+    animation: skeletonShimmer 1.5s infinite;
+}
+
+.skeleton-text {
+    height: 14px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--bg-surface) 25%, var(--bg-pill-hover) 50%, var(--bg-surface) 75%);
+    background-size: 200% 100%;
+    animation: skeletonShimmer 1.5s infinite;
+    margin-top: 8px;
+}
+
+.skeleton-title {
+    width: 75%;
+}
+
+.skeleton-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.skeleton-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: var(--radius-full);
+    background: var(--bg-surface);
+}
+
+.skeleton-sub {
+    width: 45%;
+}
+
+@keyframes skeletonShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}

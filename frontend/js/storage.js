@@ -1,15 +1,15 @@
 /**
- * PIXORA - Member 07 Contribution Module
- * Subsystem: Storage & State Persistence Architecture
+ * PIXORA - Storage & State Persistence Layer
+ * Contributed by: Member 07 (Storage & State Persistence)
  * 
- * Responsibilities:
- * - Persistent browser storage abstraction using HTML5 localStorage.
- * - Central state initialization and memory fallback resilience.
- * - CRUD operations for Pins, Boards, Likes, Saves, Comments, and Following.
- * - Reset and factory default restoration.
+ * Manages all local state persistence with localStorage, robust fallback handling,
+ * pin querying, mutations (saves, likes, comments, boards, profile edits).
  */
 
 class StorageManager {
+    static apiBase = (typeof window !== 'undefined' && window.location && window.location.origin && window.location.origin.includes('8080')) ? '' : 'http://localhost:8080';
+    static isBackendConnected = false;
+
     static STORAGE_KEYS = {
         PINS: 'pixora_pins_v1',
         SAVED: 'pixora_saved_pin_ids_v1',
@@ -20,7 +20,11 @@ class StorageManager {
         CREATED: 'pixora_created_pin_ids_v1'
     };
 
+    /**
+     * Initialize storage and attempt handshake with C++ backend
+     */
     static init() {
+        this.checkBackendConnection();
         try {
             if (!localStorage.getItem(this.STORAGE_KEYS.PINS)) {
                 localStorage.setItem(this.STORAGE_KEYS.PINS, JSON.stringify(INITIAL_PINS));
@@ -43,12 +47,32 @@ class StorageManager {
                 localStorage.setItem(this.STORAGE_KEYS.FOLLOWING, JSON.stringify(['kasperlind', 'oliverwild']));
             }
             if (!localStorage.getItem(this.STORAGE_KEYS.CREATED)) {
+                // Pins created by Elena Vance initially
                 const userCreated = INITIAL_PINS.filter(p => p.author.handle === 'elenavance').map(p => p.id);
                 localStorage.setItem(this.STORAGE_KEYS.CREATED, JSON.stringify(userCreated));
             }
         } catch (e) {
             console.warn('LocalStorage unavailable or disabled, continuing with memory cache:', e);
         }
+    }
+
+    static checkBackendConnection() {
+        if (typeof fetch === 'undefined') return;
+        fetch(`${this.apiBase}/api/pins`)
+            .then(res => res.json())
+            .then(data => {
+                if (Array.isArray(data) && data.length > 0) {
+                    this.isBackendConnected = true;
+                    console.log('%c⚡ Connected to PIXORA C++ Backend Server! ⚡', 'color: #10B981; font-weight: bold;');
+                    this.setRaw(this.STORAGE_KEYS.PINS, data);
+                    if (typeof PixoraApp !== 'undefined' && PixoraApp.refreshCurrentView) {
+                        PixoraApp.refreshCurrentView();
+                    }
+                }
+            })
+            .catch(() => {
+                // Running in standalone client mode
+            });
     }
 
     static getRaw(key, fallback = []) {
@@ -71,6 +95,9 @@ class StorageManager {
         }
     }
 
+    /**
+     * Get all pins with updated saved & liked status
+     */
     static getPins() {
         const pins = this.getRaw(this.STORAGE_KEYS.PINS, INITIAL_PINS);
         const savedIds = new Set(this.getSavedPinIds());
@@ -100,18 +127,28 @@ class StorageManager {
         return this.getRaw(this.STORAGE_KEYS.CREATED, []);
     }
 
+    /**
+     * Get array of all saved pins
+     */
     static getSavedPins() {
         const pins = this.getPins();
         const savedIds = new Set(this.getSavedPinIds());
         return pins.filter(p => savedIds.has(p.id));
     }
 
+    /**
+     * Get pins created by current user
+     */
     static getCreatedPins() {
         const pins = this.getPins();
         const createdIds = new Set(this.getCreatedPinIds());
         return pins.filter(p => createdIds.has(p.id));
     }
 
+    /**
+     * Toggle Save / Unsave a pin
+     * @returns {boolean} isSaved now
+     */
     static toggleSavePin(pinId, boardName = null) {
         const savedIds = this.getSavedPinIds();
         const pins = this.getPins();
@@ -120,12 +157,14 @@ class StorageManager {
 
         const index = savedIds.indexOf(pinId);
         if (index > -1) {
+            // Unsave
             savedIds.splice(index, 1);
             if (targetPin) {
                 targetPin.saves = Math.max(0, (targetPin.saves || 1) - 1);
             }
             isSaved = false;
         } else {
+            // Save
             savedIds.unshift(pinId);
             if (targetPin) {
                 targetPin.saves = (targetPin.saves || 0) + 1;
@@ -139,13 +178,27 @@ class StorageManager {
         this.setRaw(this.STORAGE_KEYS.SAVED, savedIds);
         this.setRaw(this.STORAGE_KEYS.PINS, pins);
 
+        // Update profile saves count
         const profile = this.getProfile();
         profile.savesCount = savedIds.length;
         this.setRaw(this.STORAGE_KEYS.PROFILE, profile);
 
+        // Sync with C++ backend
+        if (this.isBackendConnected) {
+            fetch(`${this.apiBase}/api/pins/${pinId}/save`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ board: boardName || '' })
+            }).catch(() => {});
+        }
+
         return isSaved;
     }
 
+    /**
+     * Toggle Like / Unlike a pin
+     * @returns {boolean} isLiked now
+     */
     static toggleLikePin(pinId) {
         const likedIds = this.getLikedPinIds();
         const pins = this.getPins();
@@ -165,9 +218,18 @@ class StorageManager {
 
         this.setRaw(this.STORAGE_KEYS.LIKED, likedIds);
         this.setRaw(this.STORAGE_KEYS.PINS, pins);
+
+        // Sync with C++ backend
+        if (this.isBackendConnected) {
+            fetch(`${this.apiBase}/api/pins/${pinId}/like`, { method: 'POST' }).catch(() => {});
+        }
+
         return { isLiked, likesCount: targetPin ? targetPin.likes : 0 };
     }
 
+    /**
+     * Add a comment to a pin
+     */
     static addComment(pinId, commentText) {
         if (!commentText || !commentText.trim()) return null;
 
@@ -190,9 +252,22 @@ class StorageManager {
         targetPin.comments.push(newComment);
 
         this.setRaw(this.STORAGE_KEYS.PINS, pins);
+
+        // Sync with C++ backend
+        if (this.isBackendConnected) {
+            fetch(`${this.apiBase}/api/pins/${pinId}/comment`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: commentText.trim() })
+            }).catch(() => {});
+        }
+
         return newComment;
     }
 
+    /**
+     * Create and store a new pin
+     */
     static createPin(pinData) {
         const pins = this.getPins();
         const profile = this.getProfile();
@@ -223,17 +298,21 @@ class StorageManager {
             createdAt: new Date().toISOString().split('T')[0]
         };
 
+        // Add to front of pins list
         pins.unshift(newPin);
         this.setRaw(this.STORAGE_KEYS.PINS, pins);
 
+        // Auto-save to user saved pins
         const savedIds = this.getSavedPinIds();
         savedIds.unshift(newPin.id);
         this.setRaw(this.STORAGE_KEYS.SAVED, savedIds);
 
+        // Add to user created pins
         const createdIds = this.getCreatedPinIds();
         createdIds.unshift(newPin.id);
         this.setRaw(this.STORAGE_KEYS.CREATED, createdIds);
 
+        // Update board pin count if board exists
         const boards = this.getBoards();
         const board = boards.find(b => b.title.toLowerCase() === newPin.board.toLowerCase());
         if (board) {
@@ -242,13 +321,28 @@ class StorageManager {
             this.setRaw(this.STORAGE_KEYS.BOARDS, boards);
         }
 
+        // Sync with C++ backend
+        if (this.isBackendConnected) {
+            fetch(`${this.apiBase}/api/pins`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newPin)
+            }).catch(() => {});
+        }
+
         return newPin;
     }
 
+    /**
+     * Get Boards
+     */
     static getBoards() {
         return this.getRaw(this.STORAGE_KEYS.BOARDS, INITIAL_BOARDS);
     }
 
+    /**
+     * Create a new Board
+     */
     static createBoard({ title, description, isPrivate, coverImage }) {
         if (!title || !title.trim()) return null;
 
@@ -268,10 +362,16 @@ class StorageManager {
         return newBoard;
     }
 
+    /**
+     * Get User Profile
+     */
     static getProfile() {
         return this.getRaw(this.STORAGE_KEYS.PROFILE, INITIAL_PROFILE);
     }
 
+    /**
+     * Update User Profile
+     */
     static updateProfile(updatedData) {
         const current = this.getProfile();
         const updated = { ...current, ...updatedData };
@@ -279,6 +379,9 @@ class StorageManager {
         return updated;
     }
 
+    /**
+     * Follow/Unfollow a user
+     */
     static toggleFollow(handle) {
         const following = this.getRaw(this.STORAGE_KEYS.FOLLOWING, []);
         const idx = following.indexOf(handle);
@@ -294,6 +397,7 @@ class StorageManager {
 
         this.setRaw(this.STORAGE_KEYS.FOLLOWING, following);
 
+        // Update profile following count
         const profile = this.getProfile();
         profile.followingCount = following.length;
         this.setRaw(this.STORAGE_KEYS.PROFILE, profile);
@@ -306,6 +410,9 @@ class StorageManager {
         return following.includes(handle);
     }
 
+    /**
+     * Reset everything to factory demo state
+     */
     static resetToDefaults() {
         try {
             localStorage.removeItem(this.STORAGE_KEYS.PINS);

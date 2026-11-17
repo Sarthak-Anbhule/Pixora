@@ -1,0 +1,308 @@
+/* ==========================================================================
+   PIXORA - Create Pin Studio Stylesheet
+   Contributed by: Member 04 (Pin Creation Studio & Media Ingestion)
+   ========================================================================== */
+
+.create-pin-container {
+    max-width: 960px;
+    margin: 20px auto 60px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 28px;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.create-pin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 36px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.create-studio-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.create-form-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 36px;
+    padding: 36px;
+}
+
+/* --------------------------------------------------------------------------
+   Left Column: Drag & Drop Ingestion
+   -------------------------------------------------------------------------- */
+.create-media-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropzone-box {
+    border: 2px dashed var(--border-color);
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-surface);
+    min-height: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 20px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: all var(--transition-fast);
+}
+
+.dropzone-box:hover,
+.dropzone-box.drag-active {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary-light);
+}
+
+.upload-icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-full);
+    background-color: var(--bg-card);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-sm);
+}
+
+.upload-heading {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.upload-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    max-width: 240px;
+}
+
+.url-input-strip {
+    display: flex;
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 16px;
+}
+
+.url-input {
+    flex: 1;
+    height: 38px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-top-left-radius: var(--radius-full);
+    border-bottom-left-radius: var(--radius-full);
+    padding: 0 12px;
+    font-size: 13px;
+    color: var(--text-primary);
+    font-family: inherit;
+    outline: none;
+}
+
+.url-btn {
+    background-color: var(--text-primary);
+    color: var(--text-inverse);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 0 14px;
+    border-top-right-radius: var(--radius-full);
+    border-bottom-right-radius: var(--radius-full);
+}
+
+.sample-images-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.sample-label {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.sample-pill {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    color: var(--text-secondary);
+}
+
+.sample-pill:hover {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+/* Active Preview */
+.active-preview-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.active-preview-img {
+    max-width: 100%;
+    max-height: 480px;
+    object-fit: contain;
+    border-radius: var(--radius-lg);
+}
+
+.remove-preview-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.remove-preview-btn:hover {
+    background-color: var(--color-primary);
+    transform: scale(1.1);
+}
+
+/* --------------------------------------------------------------------------
+   Right Column: Form Inputs
+   -------------------------------------------------------------------------- */
+.create-fields-column {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.field-title-input {
+    font-size: 24px;
+    font-weight: 800;
+    border: none;
+    border-bottom: 2px solid var(--border-color);
+    padding: 8px 0;
+    color: var(--text-primary);
+    background: transparent;
+    outline: none;
+    font-family: inherit;
+    transition: border-color var(--transition-fast);
+}
+
+.field-title-input:focus {
+    border-color: var(--color-primary);
+}
+
+.field-desc-input {
+    min-height: 90px;
+    border: none;
+    border-bottom: 2px solid var(--border-color);
+    padding: 8px 0;
+    font-size: 15px;
+    color: var(--text-primary);
+    background: transparent;
+    outline: none;
+    font-family: inherit;
+    resize: vertical;
+    line-height: 1.5;
+    transition: border-color var(--transition-fast);
+}
+
+.field-desc-input:focus {
+    border-color: var(--color-primary);
+}
+
+.field-standard-input,
+.field-standard-select {
+    height: 44px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 0 14px;
+    font-size: 14px;
+    color: var(--text-primary);
+    background-color: var(--bg-surface);
+    font-family: inherit;
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+.field-standard-input:focus,
+.field-standard-select:focus {
+    border-color: var(--border-focus);
+    background-color: var(--bg-page);
+}
+
+/* Board Row */
+.board-selection-row {
+    display: flex;
+    gap: 10px;
+}
+
+.inline-board-input-group {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.inline-board-input {
+    flex: 1;
+    height: 38px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 0 12px;
+    font-size: 13px;
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .create-form-layout {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .create-pin-container {
+        border-radius: 16px;
+        margin: 10px auto 40px;
+    }
+
+    .create-pin-header {
+        padding: 16px 20px;
+    }
+}
