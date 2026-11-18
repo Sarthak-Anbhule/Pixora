@@ -1,0 +1,72 @@
+/* ==========================================================================
+   PIXORA - Member 09 Contribution Stylesheet
+   Micro-Animations, Theme Variables & Responsive Layout Rules
+   ========================================================================== */
+
+/* Dark Theme Variables */
+body.dark-theme {
+    --bg-page: #121214;
+    --bg-card: #1E1E22;
+    --bg-card-hover: #26262B;
+    --bg-input: #27272C;
+    --bg-input-hover: #323238;
+    --bg-surface: #222226;
+    --bg-pill: #27272C;
+    --bg-pill-hover: #35353C;
+
+    --text-primary: #F5F5F7;
+    --text-secondary: #A1A1A6;
+    --text-muted: #6E6E73;
+    --text-inverse: #121214;
+
+    --border-color: #2E2E33;
+    --border-light: #242428;
+    --border-focus: #FFFFFF;
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+    --shadow-pin-hover: 0 14px 34px rgba(0, 0, 0, 0.65);
+}
+
+/* Card Viewport Entrance Transition */
+.pin-card {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.45s ease-out, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.pin-card.in-viewport {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Progressive Image Blur-up */
+.pin-image {
+    transition: filter 0.4s ease, opacity 0.4s ease;
+}
+
+.pin-image:not(.is-loaded) {
+    filter: blur(8px);
+}
+
+.pin-image.is-loaded {
+    filter: blur(0);
+}
+
+/* Ripple Micro-Interaction */
+.btn-ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: rippleEffect 0.6s linear;
+    background-color: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+}
+
+@keyframes rippleEffect {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
